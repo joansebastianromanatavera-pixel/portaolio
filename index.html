@@ -4,726 +4,930 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio — Desarrollador de Software</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+/* =================================================
+   PORTAFOLIO | ESTÉTICA ARMONI — TEMA CAMALEÓN
+   Hooks $100M Offers + Metodología SOLID & Scrum
+   ================================================= */
 
 :root {
-    --bg-deep: #050505;
-    --bg-card: #0a0a0a;
-    --bg-card-hover: #0f0f0f;
-    --border-dim: #161616;
-    --border-hover: #2a2a2a;
-    --text-primary: #e0e0e0;
-    --text-secondary: #777777;
-    --text-dim: #444444;
-    --accent: #999999;
-    --accent-bright: #cccccc;
-    --glow: rgba(255,255,255,0.04);
+    --bg-color: #000000;
+    --text-color: #aaaaaa;
+    --title-color: #ffffff;
+    --grid-color: rgba(255, 255, 255, 0.04);
+    --box-bg: #000000;
+    --box-border: rgba(255, 255, 255, 0.2);
+    --box-hover-bg: #ffffff;
+    --box-hover-text: #000000;
+    --btn-border: #ffffff;
+    --btn-hover-bg: #ffffff;
+    --btn-hover-text: #000000;
+    --cursor-color: #ffffff;
+    --cursor-blend: difference;
 }
 
-html { scroll-behavior: smooth; }
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-color: #f4f4f4;
+        --text-color: #444444;
+        --title-color: #000000;
+        --grid-color: rgba(0, 0, 0, 0.05);
+        --box-bg: rgba(255, 255, 255, 0.8);
+        --box-border: rgba(0, 0, 0, 0.15);
+        --box-hover-bg: #000000;
+        --box-hover-text: #ffffff;
+        --btn-border: #000000;
+        --btn-hover-bg: #000000;
+        --btn-hover-text: #ffffff;
+        --cursor-color: #ffffff;
+        --cursor-blend: difference;
+    }
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+@media (pointer: fine) { * { cursor: none !important; } }
+@media (pointer: coarse), (hover: none) { #custom-cursor { display: none !important; } }
+html, body { width: 100%; max-width: 100%; overflow-x: hidden !important; }
 
 body {
-    background: var(--bg-deep);
-    color: var(--text-primary);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
-    overflow-x: hidden;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
 }
 
-/* GRAIN OVERLAY */
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
+#custom-cursor {
+    width: 12px; height: 12px;
+    background: var(--cursor-color);
+    border-radius: 50%;
+    position: fixed; pointer-events: none; z-index: 99999;
+    mix-blend-mode: var(--cursor-blend);
+    transition: width 0.3s, height 0.3s, transform 0.1s;
+    transform: translate(-50%, -50%);
+}
+#custom-cursor.hover-grow { width: 40px; height: 40px; }
+
+#grid-overlay {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 80px 80px;
 }
 
 ::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: var(--bg-deep); }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+::-webkit-scrollbar-track { background: var(--bg-color); }
+::-webkit-scrollbar-thumb { background: var(--text-color); }
 
-a { color: var(--accent-bright); text-decoration: none; transition: color 0.3s; }
-a:hover { color: #fff; }
-
-/* ── NAV ── */
+/* --- NAV --- */
 nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.5rem 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(5,5,5,0.9);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-dim);
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 20px 50px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--box-border);
+}
+.logo { font-size: 1.3rem; font-weight: 300; letter-spacing: 8px; text-transform: uppercase; color: var(--title-color); }
+.nav-right { display: flex; align-items: center; gap: 30px; }
+.nav-links { display: flex; gap: 25px; }
+.nav-links a { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-color); text-decoration: none; transition: color 0.3s; }
+.nav-links a:hover { color: var(--title-color); }
+
+/* LANGUAGE TOGGLE */
+.lang-toggle {
+    display: flex; gap: 0; border: 1px solid var(--box-border); overflow: hidden;
+}
+.lang-btn {
+    padding: 6px 14px; font-size: 11px; letter-spacing: 2px;
+    background: transparent; border: none; color: var(--text-color);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    transition: all 0.3s; cursor: pointer;
+}
+.lang-btn.active { background: var(--title-color); color: var(--bg-color); }
+
+.nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
+.nav-toggle span { width: 22px; height: 1px; background: var(--title-color); }
+
+/* --- SECTIONS --- */
+section { position: relative; z-index: 1; padding: 120px 80px; }
+.section-index { font-size: 11px; letter-spacing: 5px; text-transform: uppercase; color: var(--text-color); margin-bottom: 10px; }
+h2 { font-size: 12px; font-weight: 400; letter-spacing: 6px; text-transform: uppercase; color: var(--title-color); margin-bottom: 60px; padding-bottom: 15px; border-bottom: 1px solid var(--box-border); display: inline-block; }
+
+/* --- HERO --- */
+#hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 80px; border-bottom: 1px solid var(--box-border); }
+.hero-label { font-size: 12px; letter-spacing: 5px; text-transform: uppercase; color: var(--text-color); margin-bottom: 30px; }
+.hero-title { font-size: clamp(2.5rem, 7vw, 6rem); font-weight: 100; letter-spacing: 12px; text-transform: uppercase; color: var(--title-color); line-height: 1.1; margin-bottom: 30px; }
+.hero-subtitle { max-width: 580px; font-size: 16px; color: var(--text-color); line-height: 2; letter-spacing: 0.5px; margin-bottom: 20px; }
+
+/* HOOK — Hormozi value proposition */
+.hero-hook {
+    max-width: 580px;
+    font-size: 14px;
+    color: var(--title-color);
+    line-height: 1.9;
+    letter-spacing: 0.5px;
+    margin-bottom: 40px;
+    padding: 20px 25px;
+    border-left: 2px solid var(--title-color);
 }
 
-.nav-brand {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 600;
-    letter-spacing: 4px;
-    color: var(--text-primary);
-    text-transform: uppercase;
-}
-
-.nav-links { display: flex; gap: 2.5rem; }
-
-.nav-links a {
-    font-size: 0.7rem;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    position: relative;
-    transition: color 0.3s;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px; left: 0;
-    width: 0; height: 1px;
-    background: var(--accent);
-    transition: width 0.4s ease;
-}
-
-.nav-links a:hover { color: var(--text-secondary); }
-.nav-links a:hover::after { width: 100%; }
-
-/* MOBILE MENU */
-.nav-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 4px;
-}
-.nav-toggle span {
-    width: 22px;
-    height: 1px;
-    background: var(--text-secondary);
-    transition: all 0.3s;
-}
-
-/* ── HERO ── */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 8vw;
-    position: relative;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 15%; right: 10%;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
-    filter: blur(60px);
-    animation: drift 10s ease-in-out infinite;
-}
-
-@keyframes drift {
-    0%, 100% { opacity: 0.5; transform: translate(0, 0); }
-    50% { opacity: 0.8; transform: translate(-20px, 10px); }
-}
-
-.hero-label {
-    font-size: 0.65rem;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-}
-
-.hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.8rem, 6.5vw, 5.5rem);
-    font-weight: 300;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s forwards;
-}
-
-.hero h1 em {
-    font-style: italic;
-    color: var(--accent);
-}
-
-.hero-desc {
-    max-width: 480px;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s forwards;
-}
+.hero-cta-group { display: flex; gap: 15px; flex-wrap: wrap; }
 
 .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.85rem 2rem;
-    border: 1px solid #333;
-    color: var(--accent-bright);
-    font-size: 0.7rem;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    transition: all 0.4s;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.8s forwards;
+    display: inline-block; padding: 18px 45px;
+    border: 1px solid var(--btn-border); color: var(--title-color);
+    font-size: 12px; letter-spacing: 5px; text-transform: uppercase;
+    text-decoration: none; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    transition: all 0.4s ease;
+}
+.hero-cta:hover { background: var(--btn-hover-bg); color: var(--btn-hover-text); box-shadow: 0 0 30px rgba(150,150,150,0.2); }
+.hero-cta.primary { background: var(--title-color); color: var(--bg-color); }
+.hero-cta.primary:hover { background: transparent; color: var(--title-color); }
+
+/* --- ABOUT --- */
+#about { border-bottom: 1px solid var(--box-border); }
+.about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; }
+.about-text { font-size: 15px; color: var(--text-color); line-height: 2.2; }
+.about-text p { margin-bottom: 20px; }
+.about-text strong { color: var(--title-color); font-weight: 400; }
+
+.tech-grid { display: flex; flex-direction: column; gap: 8px; }
+.tech-box {
+    border: 1px solid var(--box-border); background: var(--box-bg);
+    padding: 20px 25px; display: flex; justify-content: space-between; align-items: center;
+    transition: all 0.4s ease;
+}
+.tech-box:hover { background: var(--box-hover-bg); color: var(--box-hover-text); border-color: var(--box-hover-bg); box-shadow: 0 0 30px rgba(150,150,150,0.15); }
+.tech-box:hover .tech-name, .tech-box:hover .tech-level { color: var(--box-hover-text); }
+.tech-name { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--title-color); font-weight: 400; transition: color 0.4s; }
+.tech-level { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-color); transition: color 0.4s; }
+
+/* --- METHODOLOGY (ACCORDION) --- */
+#metodologia { border-bottom: 1px solid var(--box-border); }
+.metodo-grid { display: flex; flex-direction: column; gap: 8px; }
+.metodo-box {
+    border: 1px solid var(--box-border); background: var(--box-bg);
+    transition: all 0.4s ease; overflow: hidden;
+}
+.metodo-header {
+    padding: 25px 30px;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; transition: all 0.4s ease;
+}
+.metodo-header:hover { background: var(--box-hover-bg); }
+.metodo-header:hover .metodo-title,
+.metodo-header:hover .metodo-letter,
+.metodo-header:hover .metodo-toggle { color: var(--box-hover-text); }
+.metodo-header-left { display: flex; align-items: center; gap: 20px; }
+.metodo-letter {
+    font-size: 28px; font-weight: 100; color: var(--title-color);
+    min-width: 30px; transition: color 0.4s;
+}
+.metodo-title { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: var(--title-color); font-weight: 400; transition: color 0.4s; }
+.metodo-toggle {
+    font-size: 20px; font-weight: 100; color: var(--text-color);
+    transition: transform 0.4s, color 0.4s; display: inline-block;
+}
+.metodo-box.open .metodo-toggle { transform: rotate(45deg); }
+.metodo-body {
+    max-height: 0; opacity: 0;
+    padding: 0 30px;
+    transition: max-height 0.5s ease, opacity 0.4s ease, padding 0.4s ease;
+    overflow: hidden;
+}
+.metodo-box.open .metodo-body {
+    max-height: 400px; opacity: 1;
+    padding: 0 30px 30px 30px;
+}
+.metodo-box.open { border-color: var(--title-color); }
+.metodo-short { font-size: 14px; color: var(--title-color); margin-bottom: 12px; font-weight: 400; }
+.metodo-detail { font-size: 13px; color: var(--text-color); line-height: 2; }
+.metodo-example {
+    margin-top: 15px; padding: 15px 20px;
+    border-left: 2px solid var(--box-border);
+    font-size: 12px; color: var(--text-color); line-height: 1.9;
+    font-style: italic;
 }
 
-.hero-cta:hover {
-    background: #fff;
-    color: #000;
-    border-color: #fff;
+/* --- GUARANTEE BANNER (Hormozi) --- */
+.guarantee-banner {
+    border: 1px solid var(--box-border);
+    padding: 40px 50px;
+    text-align: center;
+    margin-top: 60px;
 }
+.guarantee-title { font-size: 14px; letter-spacing: 5px; text-transform: uppercase; color: var(--title-color); margin-bottom: 10px; }
+.guarantee-text { font-size: 14px; color: var(--text-color); line-height: 1.9; max-width: 600px; margin: 0 auto; }
 
-.hero-cta svg { width: 14px; height: 14px; transition: transform 0.3s; }
-.hero-cta:hover svg { transform: translateX(4px); }
-
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ── SECTIONS ── */
-section { padding: 7rem 8vw; }
-
-.section-label {
-    font-size: 0.6rem;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 0.75rem;
-}
-
-.section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    font-weight: 300;
-    margin-bottom: 3rem;
-    color: var(--text-primary);
-}
-
-/* ── ABOUT ── */
-#about { border-top: 1px solid var(--border-dim); }
-
-.about-content {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 4rem;
-    align-items: start;
-}
-
-.about-text p {
-    color: var(--text-secondary);
-    margin-bottom: 1.2rem;
-    font-size: 0.92rem;
-    line-height: 1.8;
-}
-
-.about-text strong {
-    color: var(--text-primary);
-    font-weight: 500;
-}
-
-.tech-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-}
-
-.tech-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.2rem;
-    border: 1px solid var(--border-dim);
-    transition: all 0.3s;
-}
-
-.tech-item:hover {
-    border-color: #333;
-    background: var(--bg-card);
-}
-
-.tech-name {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-}
-
-.tech-level {
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
-
-/* ── PROJECTS ── */
-#projects { border-top: 1px solid var(--border-dim); }
-
-.projects-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
+/* --- PROJECTS --- */
+#projects { border-bottom: 1px solid var(--box-border); }
+.projects-container { display: flex; flex-direction: column; gap: 15px; }
 .project-card {
-    display: grid;
-    grid-template-columns: 0.4fr 1fr;
-    background: var(--bg-card);
-    border: 1px solid var(--border-dim);
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid var(--box-border); background: var(--box-bg);
+    padding: 50px; display: grid; grid-template-columns: 100px 1fr auto;
+    gap: 40px; align-items: center; transition: all 0.4s ease;
 }
+.project-card:hover { background: var(--box-hover-bg); border-color: var(--box-hover-bg); box-shadow: 0 0 40px rgba(150,150,150,0.15); }
+.project-card:hover .project-number, .project-card:hover .project-type,
+.project-card:hover .project-name, .project-card:hover .project-desc,
+.project-card:hover .project-tech span, .project-card:hover .project-link { color: var(--box-hover-text); }
+.project-card:hover .project-tech span { border-color: var(--box-hover-text); }
 
-.project-card:hover {
-    border-color: #2a2a2a;
-    transform: translateY(-2px);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+.project-number { font-size: 4rem; font-weight: 100; color: var(--title-color); line-height: 1; letter-spacing: 2px; transition: color 0.4s; }
+.project-content { display: flex; flex-direction: column; gap: 10px; }
+.project-type { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--text-color); transition: color 0.4s; }
+.project-name { font-size: 24px; font-weight: 300; letter-spacing: 5px; text-transform: uppercase; color: var(--title-color); transition: color 0.4s; }
+.project-desc { font-size: 14px; color: var(--text-color); line-height: 2; max-width: 520px; transition: color 0.4s; }
+.project-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
+.project-tech span { padding: 5px 12px; border: 1px solid var(--box-border); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-color); transition: all 0.4s; }
+.project-link-wrapper { align-self: center; }
+.project-link { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-color); text-decoration: none; transition: color 0.4s; display: flex; align-items: center; gap: 8px; }
+.project-link:hover { color: var(--title-color); }
+.project-link svg { width: 14px; height: 14px; transition: transform 0.3s; }
+.project-card:hover .project-link svg { transform: translate(3px, -3px); }
+
+/* --- CONTACT --- */
+.contact-content { max-width: 650px; }
+.contact-text { font-size: 15px; color: var(--text-color); line-height: 2.2; margin-bottom: 50px; }
+.contact-grid { display: flex; flex-direction: column; gap: 8px; }
+.contact-box {
+    border: 1px solid var(--box-border); background: var(--box-bg);
+    padding: 22px 30px; display: flex; justify-content: space-between; align-items: center;
+    text-decoration: none; transition: all 0.4s ease;
 }
+.contact-box:hover { background: var(--box-hover-bg); border-color: var(--box-hover-bg); box-shadow: 0 0 30px rgba(150,150,150,0.15); }
+.contact-box:hover .contact-label, .contact-box:hover .contact-value, .contact-box:hover svg { color: var(--box-hover-text); }
+.contact-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-color); margin-bottom: 3px; transition: color 0.4s; }
+.contact-value { font-size: 14px; color: var(--title-color); letter-spacing: 1px; transition: color 0.4s; }
+.contact-box svg { width: 14px; height: 14px; color: var(--text-color); transition: all 0.4s; }
+.contact-box:hover svg { transform: translateX(4px); }
 
-.project-visual {
-    aspect-ratio: 1;
-    background: linear-gradient(135deg, #080808, #111);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* --- CTA FINAL (Hormozi) --- */
+.final-cta {
+    text-align: center;
+    padding: 80px;
+    border-top: 1px solid var(--box-border);
     position: relative;
-    overflow: hidden;
+    z-index: 1;
 }
-
-.project-visual::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.03), transparent 60%);
-}
-
-.project-number {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 5rem;
-    font-weight: 300;
-    color: #1a1a1a;
-    line-height: 1;
-}
-
-.project-info {
-    padding: 2.5rem 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.project-type {
-    font-size: 0.6rem;
-    letter-spacing: 3.5px;
+.final-cta-title {
+    font-size: clamp(1.5rem, 4vw, 2.8rem);
+    font-weight: 100;
+    letter-spacing: 8px;
     text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 0.6rem;
+    color: var(--title-color);
+    margin-bottom: 20px;
+}
+.final-cta-sub {
+    font-size: 15px;
+    color: var(--text-color);
+    margin-bottom: 40px;
+    line-height: 1.9;
+}
+.final-cta a {
+    display: inline-block; padding: 22px 60px;
+    background: var(--title-color); color: var(--bg-color);
+    font-size: 13px; letter-spacing: 5px; text-transform: uppercase;
+    text-decoration: none; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    transition: all 0.4s ease; border: 2px solid var(--title-color);
+}
+.final-cta a:hover { background: transparent; color: var(--title-color); box-shadow: 0 0 30px rgba(150,150,150,0.2); }
+
+/* --- FOOTER --- */
+footer { text-align: center; padding: 50px; color: var(--text-color); border-top: 1px solid var(--box-border); }
+footer p { font-size: 11px; letter-spacing: 5px; text-transform: uppercase; }
+
+/* --- ANIMATIONS --- */
+.reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    section { padding: 80px 40px; }
+    #hero { padding: 0 40px; }
+    .hero-title { letter-spacing: 8px; }
+    .project-card { grid-template-columns: 60px 1fr; gap: 25px; padding: 35px; }
+    .project-link-wrapper { display: none; }
 }
 
-.project-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    font-weight: 400;
-    margin-bottom: 0.6rem;
-    color: var(--text-primary);
-}
-
-.project-desc {
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-    max-width: 500px;
-}
-
-.project-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-}
-
-.project-tech span {
-    padding: 0.25rem 0.7rem;
-    border: 1px solid var(--border-dim);
-    font-size: 0.6rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    transition: all 0.3s;
-}
-
-.project-card:hover .project-tech span {
-    border-color: #2a2a2a;
-    color: var(--text-secondary);
-}
-
-.project-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    transition: color 0.3s;
-}
-
-.project-link:hover { color: var(--text-primary); }
-.project-link svg { width: 12px; height: 12px; }
-
-/* ── CONTACT ── */
-#contact { border-top: 1px solid var(--border-dim); }
-
-.contact-content {
-    max-width: 600px;
-}
-
-.contact-content > p {
-    color: var(--text-secondary);
-    font-size: 0.92rem;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-}
-
-.contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 1.5rem;
-    border: 1px solid var(--border-dim);
-    color: var(--text-secondary);
-    transition: all 0.3s;
-}
-
-.contact-item:hover {
-    border-color: #333;
-    background: var(--bg-card);
-    color: var(--text-primary);
-}
-
-.contact-item-label {
-    font-size: 0.6rem;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 0.2rem;
-}
-
-.contact-item-value { font-size: 0.9rem; }
-
-.contact-item svg {
-    width: 14px; height: 14px;
-    color: var(--text-dim);
-    transition: transform 0.3s;
-}
-
-.contact-item:hover svg {
-    transform: translateX(3px);
-    color: var(--text-secondary);
-}
-
-/* ── FOOTER ── */
-footer {
-    padding: 2.5rem 8vw;
-    border-top: 1px solid var(--border-dim);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-footer p {
-    font-size: 0.6rem;
-    letter-spacing: 3px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-}
-
-/* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { 
-        display: none;
-        position: absolute;
-        top: 100%; left: 0; right: 0;
-        flex-direction: column;
-        background: rgba(5,5,5,0.95);
-        backdrop-filter: blur(20px);
-        padding: 1.5rem;
-        gap: 1.2rem;
-        border-bottom: 1px solid var(--border-dim);
-    }
+    nav { padding: 15px 20px; }
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg-color); padding: 25px; gap: 15px; border-bottom: 1px solid var(--box-border); }
     .nav-links.open { display: flex; }
     .nav-toggle { display: flex; }
-    section { padding: 4rem 5vw; }
-    .about-content { grid-template-columns: 1fr; gap: 2rem; }
-    .project-card { grid-template-columns: 1fr; }
-    .project-visual { aspect-ratio: 16/8; }
-    .project-info { padding: 1.8rem; }
-    .hero { padding: 0 5vw; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .lang-toggle { display: none; }
+    section { padding: 60px 25px; }
+    #hero { padding: 0 25px; }
+    .hero-title { font-size: clamp(1.8rem, 10vw, 3.5rem); letter-spacing: 5px; }
+    .hero-hook { padding: 15px 20px; font-size: 13px; }
+    .hero-cta-group { flex-direction: column; }
+    .hero-cta { text-align: center; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .project-card { grid-template-columns: 1fr; gap: 15px; padding: 30px; }
+    .project-number { font-size: 2.5rem; }
+    .project-link-wrapper { display: block; }
+    .guarantee-banner { padding: 30px 25px; }
+    .final-cta { padding: 60px 25px; }
+    footer { padding: 30px 25px; }
 }
 
-/* ── ANIMATIONS ── */
-.reveal {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* --- LANG HIDDEN --- */
+.lang-en { display: none; }
+body.en .lang-es { display: none; }
+body.en .lang-en { display: block; }
+body.en .lang-en-inline { display: inline; }
+body.en .lang-es-inline { display: none; }
+.lang-en-inline { display: none; }
     </style>
 </head>
 <body>
 
+<div id="custom-cursor"></div>
+<div id="grid-overlay"></div>
+
+<!-- NAV -->
 <nav>
-    <div class="nav-brand">Romagna</div>
-    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">
-        <span></span><span></span><span></span>
-    </button>
-    <div class="nav-links">
-        <a href="#about">Sobre mí</a>
-        <a href="#projects">Proyectos</a>
-        <a href="#contact">Contacto</a>
+    <div class="logo">Romagna</div>
+    <div class="nav-right">
+        <div class="lang-toggle">
+            <button class="lang-btn active" onclick="setLang('es')">ES</button>
+            <button class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="#about"><span class="lang-es-inline">Sobre mí</span><span class="lang-en-inline">About</span></a>
+            <a href="#metodologia"><span class="lang-es-inline">Metodología</span><span class="lang-en-inline">Methodology</span></a>
+            <a href="#projects"><span class="lang-es-inline">Proyectos</span><span class="lang-en-inline">Projects</span></a>
+            <a href="#contact"><span class="lang-es-inline">Contacto</span><span class="lang-en-inline">Contact</span></a>
+        </div>
     </div>
 </nav>
 
-<section class="hero">
-    <div class="hero-label">Desarrollador de Software — Colombia</div>
-    <h1>Código con<br><em>propósito</em></h1>
-    <p class="hero-desc">
-        Estudiante de Ingeniería de Software. Construyo plataformas digitales 
-        que resuelven problemas reales — desde sitios web hasta inteligencia artificial.
-    </p>
-    <a href="#projects" class="hero-cta">
-        Ver proyectos
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-    </a>
-</section>
-
-<section id="about">
-    <div class="section-label">001 — Sobre mí</div>
-    <h2 class="section-title">Quién soy</h2>
-    <div class="about-content">
-        <div class="about-text">
-            <p>
-                Soy estudiante de <strong>Ingeniería de Software</strong> en tercer semestre, 
-                basado en Colombia. Desde el inicio de mi carrera he priorizado construir 
-                proyectos reales sobre solo estudiar teoría.
-            </p>
-            <p>
-                Fundé el <strong>Ecosistema ARMONI</strong> — un conjunto de plataformas que 
-                abarca desde sitios web corporativos hasta inteligencia artificial aplicada. 
-                Cada proyecto nace de una necesidad concreta y se ejecuta con disciplina.
-            </p>
-            <p>
-                Disponible para <strong>freelance remoto</strong>. Si tienes un proyecto que 
-                necesita cobrar vida, hablemos.
-            </p>
-        </div>
-        <div class="tech-list">
-            <div class="tech-item reveal">
-                <span class="tech-name">HTML5</span>
-                <span class="tech-level">Intermedio–Avanzado</span>
-            </div>
-            <div class="tech-item reveal">
-                <span class="tech-name">CSS3</span>
-                <span class="tech-level">Intermedio–Avanzado</span>
-            </div>
-            <div class="tech-item reveal">
-                <span class="tech-name">JavaScript</span>
-                <span class="tech-level">Intermedio</span>
-            </div>
-            <div class="tech-item reveal">
-                <span class="tech-name">Java</span>
-                <span class="tech-level">Intermedio</span>
-            </div>
-            <div class="tech-item reveal">
-                <span class="tech-name">Python</span>
-                <span class="tech-level">Intermedio</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="projects">
-    <div class="section-label">002 — Proyectos</div>
-    <h2 class="section-title">Trabajo seleccionado</h2>
-    <div class="projects-grid">
-
-        <!-- ARMONI.CHAT -->
-        <div class="project-card reveal">
-            <div class="project-visual">
-                <div class="project-number">01</div>
-            </div>
-            <div class="project-info">
-                <div class="project-type">Plataforma Web</div>
-                <div class="project-name">ARMONI.chat</div>
-                <p class="project-desc">
-                    Plataforma de gestión inteligente y motor de inteligencia estratégica. 
-                    Centralización de datos, automatización de procesos y una interfaz 
-                    diseñada para la toma de decisiones basada en datos.
-                </p>
-                <div class="project-tech">
-                    <span>HTML5</span>
-                    <span>CSS3</span>
-                    <span>JavaScript</span>
-                    <span>UI/UX</span>
-                </div>
-                <a href="https://armoni.chat" target="_blank" class="project-link">
-                    Ver en vivo
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M7 17L17 7M17 7H7M17 7v10"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-
-        <!-- ARMONI TEAM -->
-        <div class="project-card reveal">
-            <div class="project-visual">
-                <div class="project-number">02</div>
-            </div>
-            <div class="project-info">
-                <div class="project-type">Sitio Web Deportivo</div>
-                <div class="project-name">ARMONI Team</div>
-                <p class="project-desc">
-                    Plataforma digital para una comunidad deportiva organizada. 
-                    Sistema de selección, gestión de miembros y presencia web 
-                    profesional para el equipo.
-                </p>
-                <div class="project-tech">
-                    <span>HTML5</span>
-                    <span>CSS3</span>
-                    <span>JavaScript</span>
-                    <span>Responsive</span>
-                </div>
-                <a href="#" class="project-link">
-                    Ver en vivo
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M7 17L17 7M17 7H7M17 7v10"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-
-        <!-- ARMONI IA -->
-        <div class="project-card reveal">
-            <div class="project-visual">
-                <div class="project-number">03</div>
-            </div>
-            <div class="project-info">
-                <div class="project-type">Inteligencia Artificial</div>
-                <div class="project-name">ARMONI IA</div>
-                <p class="project-desc">
-                    Asistente de inteligencia artificial desarrollado en Python. 
-                    Integración con APIs de procesamiento de lenguaje natural 
-                    para automatización y análisis inteligente de datos.
-                </p>
-                <div class="project-tech">
-                    <span>Python</span>
-                    <span>API Integration</span>
-                    <span>NLP</span>
-                    <span>Automatización</span>
-                </div>
-                <a href="#" class="project-link">
-                    Ver código en GitHub
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M7 17L17 7M17 7H7M17 7v10"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<section id="contact">
-    <div class="section-label">003 — Contacto</div>
-    <h2 class="section-title">Trabajemos juntos</h2>
-    <div class="contact-content">
-        <p>
-            Disponible para proyectos freelance de desarrollo web, 
-            automatización y soluciones con IA. Si necesitas un desarrollador 
-            que entregue resultados reales, escríbeme.
+<!-- HERO -->
+<section id="hero">
+    <!-- ESPAÑOL -->
+    <div class="lang-es">
+        <div class="hero-label">Desarrollador de Software — Colombia</div>
+        <h1 class="hero-title">Tu idea.<br>Funcionando.</h1>
+        <p class="hero-subtitle">
+            Desarrollo sitios web, plataformas y soluciones con inteligencia artificial 
+            que generan resultados reales para tu negocio.
         </p>
-        <div class="contact-links">
-            <a href="mailto:tu-email@ejemplo.com" class="contact-item">
-                <div>
-                    <div class="contact-item-label">Email</div>
-                    <div class="contact-item-value">tu-email@ejemplo.com</div>
+        <div class="hero-hook">
+            <strong>No cobro por horas. Cobro por resultados.</strong><br>
+            Tu proyecto entregado en tiempo récord, con código limpio, 
+            metodología profesional y comunicación directa por WhatsApp.
+        </div>
+        <div class="hero-cta-group">
+            <a href="https://wa.me/573151110385?text=Hola,%20vi%20tu%20portafolio%20y%20quiero%20cotizar%20un%20proyecto." class="hero-cta primary">Cotizar proyecto</a>
+            <a href="#projects" class="hero-cta">Ver proyectos</a>
+        </div>
+    </div>
+    <!-- ENGLISH -->
+    <div class="lang-en">
+        <div class="hero-label">Software Developer — Colombia</div>
+        <h1 class="hero-title">Your idea.<br>Working.</h1>
+        <p class="hero-subtitle">
+            I build websites, platforms and AI-powered solutions 
+            that deliver real results for your business.
+        </p>
+        <div class="hero-hook">
+            <strong>I don't charge by the hour. I charge by results.</strong><br>
+            Your project delivered fast, with clean code, 
+            professional methodology and direct communication via WhatsApp.
+        </div>
+        <div class="hero-cta-group">
+            <a href="https://wa.me/573151110385?text=Hi,%20I%20saw%20your%20portfolio%20and%20want%20to%20get%20a%20quote." class="hero-cta primary">Get a quote</a>
+            <a href="#projects" class="hero-cta">See projects</a>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="section-index">001</div>
+    <div class="lang-es"><h2>Sobre mí</h2></div>
+    <div class="lang-en"><h2>About me</h2></div>
+    <div class="about-grid">
+        <div class="about-text">
+            <div class="lang-es">
+                <p>
+                    Soy estudiante de <strong>Ingeniería de Software</strong> en tercer semestre, 
+                    basado en Colombia. Desde el inicio de mi carrera he priorizado construir 
+                    proyectos reales sobre solo estudiar teoría.
+                </p>
+                <p>
+                    Fundé el <strong>Ecosistema ARMONI</strong> — un conjunto de plataformas que 
+                    abarca desde sitios web corporativos hasta inteligencia artificial aplicada. 
+                    Cada proyecto nace de una necesidad concreta y se ejecuta con disciplina.
+                </p>
+                <p>
+                    Disponible para <strong>freelance remoto</strong>. Si tienes un proyecto que 
+                    necesita cobrar vida, hablemos.
+                </p>
+            </div>
+            <div class="lang-en">
+                <p>
+                    I'm a <strong>Software Engineering</strong> student (3rd semester), 
+                    based in Colombia. Since day one, I've prioritized building 
+                    real projects over just studying theory.
+                </p>
+                <p>
+                    I founded the <strong>ARMONI Ecosystem</strong> — a set of platforms 
+                    ranging from corporate websites to applied artificial intelligence. 
+                    Every project is born from a real need and executed with discipline.
+                </p>
+                <p>
+                    Available for <strong>remote freelance</strong>. If you have a project that 
+                    needs to come alive, let's talk.
+                </p>
+            </div>
+        </div>
+        <div class="tech-grid">
+            <div class="tech-box reveal">
+                <span class="tech-name">HTML5</span>
+                <span class="tech-level"><span class="lang-es-inline">Intermedio–Avanzado</span><span class="lang-en-inline">Mid–Advanced</span></span>
+            </div>
+            <div class="tech-box reveal">
+                <span class="tech-name">CSS3</span>
+                <span class="tech-level"><span class="lang-es-inline">Intermedio–Avanzado</span><span class="lang-en-inline">Mid–Advanced</span></span>
+            </div>
+            <div class="tech-box reveal">
+                <span class="tech-name">JavaScript</span>
+                <span class="tech-level"><span class="lang-es-inline">Intermedio</span><span class="lang-en-inline">Intermediate</span></span>
+            </div>
+            <div class="tech-box reveal">
+                <span class="tech-name">Java</span>
+                <span class="tech-level"><span class="lang-es-inline">Intermedio</span><span class="lang-en-inline">Intermediate</span></span>
+            </div>
+            <div class="tech-box reveal">
+                <span class="tech-name">Python</span>
+                <span class="tech-level"><span class="lang-es-inline">Intermedio</span><span class="lang-en-inline">Intermediate</span></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section id="metodologia">
+    <div class="section-index">002</div>
+    <div class="lang-es"><h2>Metodología de trabajo</h2></div>
+    <div class="lang-en"><h2>Work methodology</h2></div>
+
+    <div class="about-text" style="max-width: 700px; margin-bottom: 50px;">
+        <div class="lang-es">
+            <p>
+                No solo escribo código — lo estructuro con <strong>principios de ingeniería profesional</strong>. 
+                Aplico SOLID para que cada componente sea mantenible y escalable. Trabajo bajo 
+                <strong>Scrum</strong>, con sprints, entregables semanales y visibilidad total del avance.
+            </p>
+        </div>
+        <div class="lang-en">
+            <p>
+                I don't just write code — I structure it with <strong>professional engineering principles</strong>. 
+                I apply SOLID so every component is maintainable and scalable. I work under 
+                <strong>Scrum</strong>, with sprints, weekly deliverables and full progress visibility.
+            </p>
+        </div>
+    </div>
+
+    <div class="metodo-grid">
+        <!-- S -->
+        <div class="metodo-box reveal" onclick="toggleMetodo(this)">
+            <div class="metodo-header">
+                <div class="metodo-header-left">
+                    <span class="metodo-letter">S</span>
+                    <span class="metodo-title">Single Responsibility</span>
                 </div>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
+                <span class="metodo-toggle">+</span>
+            </div>
+            <div class="metodo-body">
+                <div class="lang-es">
+                    <p class="metodo-short">Cada clase, módulo o función debe tener una única razón para cambiar.</p>
+                    <p class="metodo-detail">
+                        Esto significa que cada componente del código hace exactamente una cosa y la hace bien. 
+                        Si un módulo maneja tanto la lógica de negocio como la conexión a base de datos, 
+                        se separan en dos. El resultado: código más limpio, más fácil de testear, 
+                        más fácil de mantener y menos propenso a errores cuando se hacen cambios.
+                    </p>
+                    <div class="metodo-example">
+                        Ejemplo: En vez de tener una función que valida datos, los guarda en base de datos Y envía un email, 
+                        creo tres funciones separadas. Si el cliente de email cambia, solo toco una función.
+                    </div>
+                </div>
+                <div class="lang-en">
+                    <p class="metodo-short">Each class, module or function should have only one reason to change.</p>
+                    <p class="metodo-detail">
+                        This means every code component does exactly one thing and does it well. 
+                        If a module handles both business logic and database connections, 
+                        they get separated. The result: cleaner code, easier to test, 
+                        easier to maintain, and less error-prone when making changes.
+                    </p>
+                    <div class="metodo-example">
+                        Example: Instead of one function that validates data, saves to database AND sends an email, 
+                        I create three separate functions. If the email client changes, I only touch one function.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- O -->
+        <div class="metodo-box reveal" onclick="toggleMetodo(this)">
+            <div class="metodo-header">
+                <div class="metodo-header-left">
+                    <span class="metodo-letter">O</span>
+                    <span class="metodo-title">Open / Closed</span>
+                </div>
+                <span class="metodo-toggle">+</span>
+            </div>
+            <div class="metodo-body">
+                <div class="lang-es">
+                    <p class="metodo-short">Abierto para extensión, cerrado para modificación.</p>
+                    <p class="metodo-detail">
+                        El código existente que ya funciona no se toca. Cuando necesitas agregar funcionalidad nueva, 
+                        la extiendes sin modificar lo que ya está probado y funcionando. Esto protege la estabilidad 
+                        del proyecto mientras crece. Tu sitio web puede evolucionar sin que cada actualización 
+                        rompa algo que ya estaba bien.
+                    </p>
+                    <div class="metodo-example">
+                        Ejemplo: Si tu plataforma tiene un sistema de pagos con Nequi y quieres agregar Daviplata, 
+                        creo un nuevo módulo de pago sin tocar el de Nequi. Ambos coexisten perfectamente.
+                    </div>
+                </div>
+                <div class="lang-en">
+                    <p class="metodo-short">Open for extension, closed for modification.</p>
+                    <p class="metodo-detail">
+                        Existing working code stays untouched. When you need new functionality, 
+                        it's extended without modifying what's already tested and working. This protects 
+                        project stability while it grows. Your website can evolve without every update 
+                        breaking something that was already fine.
+                    </p>
+                    <div class="metodo-example">
+                        Example: If your platform has a Nequi payment system and you want to add Daviplata, 
+                        I create a new payment module without touching Nequi. Both coexist perfectly.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- L -->
+        <div class="metodo-box reveal" onclick="toggleMetodo(this)">
+            <div class="metodo-header">
+                <div class="metodo-header-left">
+                    <span class="metodo-letter">L</span>
+                    <span class="metodo-title">Liskov Substitution</span>
+                </div>
+                <span class="metodo-toggle">+</span>
+            </div>
+            <div class="metodo-body">
+                <div class="lang-es">
+                    <p class="metodo-short">Los componentes hijos deben poder reemplazar a los padres sin romper el sistema.</p>
+                    <p class="metodo-detail">
+                        Si tienes un componente base que funciona de cierta manera, cualquier variación de ese 
+                        componente debe comportarse de forma compatible. Esto garantiza que puedes intercambiar 
+                        piezas del sistema sin efectos secundarios inesperados. Es como cambiar una pieza de un 
+                        motor — la nueva debe encajar exactamente donde estaba la anterior.
+                    </p>
+                    <div class="metodo-example">
+                        Ejemplo: Si tu sitio usa un componente de "Tarjeta de Producto", puedo crear 
+                        "Tarjeta de Producto Premium" que extiende la original sin romper las páginas 
+                        donde ya se usa la tarjeta base.
+                    </div>
+                </div>
+                <div class="lang-en">
+                    <p class="metodo-short">Child components must be able to replace parents without breaking the system.</p>
+                    <p class="metodo-detail">
+                        If you have a base component that works in a certain way, any variation of that 
+                        component must behave compatibly. This guarantees you can swap system parts 
+                        without unexpected side effects. It's like changing an engine part — the new one 
+                        must fit exactly where the previous one was.
+                    </p>
+                    <div class="metodo-example">
+                        Example: If your site uses a "Product Card" component, I can create 
+                        "Premium Product Card" that extends the original without breaking pages 
+                        where the base card is already used.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- I -->
+        <div class="metodo-box reveal" onclick="toggleMetodo(this)">
+            <div class="metodo-header">
+                <div class="metodo-header-left">
+                    <span class="metodo-letter">I</span>
+                    <span class="metodo-title">Interface Segregation</span>
+                </div>
+                <span class="metodo-toggle">+</span>
+            </div>
+            <div class="metodo-body">
+                <div class="lang-es">
+                    <p class="metodo-short">Ningún componente debe depender de funciones que no necesita.</p>
+                    <p class="metodo-detail">
+                        En vez de crear un módulo gigante que hace todo, creo interfaces pequeñas y específicas. 
+                        Cada parte del sistema solo conoce y depende de lo que realmente necesita. Esto hace 
+                        que el código sea más ligero, más rápido y mucho más fácil de modificar sin 
+                        efectos en cadena.
+                    </p>
+                    <div class="metodo-example">
+                        Ejemplo: Un módulo de autenticación no necesita saber nada sobre el carrito de compras. 
+                        Cada uno opera de forma independiente con interfaces claras de comunicación.
+                    </div>
+                </div>
+                <div class="lang-en">
+                    <p class="metodo-short">No component should depend on functions it doesn't need.</p>
+                    <p class="metodo-detail">
+                        Instead of creating one massive module that does everything, I build small, specific interfaces. 
+                        Each part of the system only knows and depends on what it actually needs. This makes 
+                        code lighter, faster, and much easier to modify without cascading effects.
+                    </p>
+                    <div class="metodo-example">
+                        Example: An authentication module doesn't need to know anything about the shopping cart. 
+                        Each one operates independently with clear communication interfaces.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- D -->
+        <div class="metodo-box reveal" onclick="toggleMetodo(this)">
+            <div class="metodo-header">
+                <div class="metodo-header-left">
+                    <span class="metodo-letter">D</span>
+                    <span class="metodo-title">Dependency Inversion</span>
+                </div>
+                <span class="metodo-toggle">+</span>
+            </div>
+            <div class="metodo-body">
+                <div class="lang-es">
+                    <p class="metodo-short">Los módulos de alto nivel no dependen de los de bajo nivel. Ambos dependen de abstracciones.</p>
+                    <p class="metodo-detail">
+                        La arquitectura se diseña de arriba hacia abajo. Los componentes principales no están 
+                        atados a implementaciones específicas, sino a contratos generales. Esto permite 
+                        cambiar la base de datos, el servidor o cualquier herramienta sin reescribir 
+                        la lógica del negocio.
+                    </p>
+                    <div class="metodo-example">
+                        Ejemplo: Si hoy tu proyecto usa MySQL y mañana necesitas migrar a PostgreSQL, 
+                        la capa de lógica de negocio no se toca. Solo cambio la implementación del acceso a datos.
+                    </div>
+                </div>
+                <div class="lang-en">
+                    <p class="metodo-short">High-level modules don't depend on low-level ones. Both depend on abstractions.</p>
+                    <p class="metodo-detail">
+                        Architecture is designed top-down. Core components aren't tied to specific 
+                        implementations but to general contracts. This allows changing the database, 
+                        server or any tool without rewriting business logic.
+                    </p>
+                    <div class="metodo-example">
+                        Example: If today your project uses MySQL and tomorrow you need PostgreSQL, 
+                        the business logic layer stays untouched. I only change the data access implementation.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCRUM -->
+        <div class="metodo-box reveal" onclick="toggleMetodo(this)">
+            <div class="metodo-header">
+                <div class="metodo-header-left">
+                    <span class="metodo-letter">&#9654;</span>
+                    <span class="metodo-title">Scrum — Metodología Ágil</span>
+                </div>
+                <span class="metodo-toggle">+</span>
+            </div>
+            <div class="metodo-body">
+                <div class="lang-es">
+                    <p class="metodo-short">Desarrollo iterativo con entregas constantes y comunicación directa.</p>
+                    <p class="metodo-detail">
+                        Cada proyecto se divide en sprints (ciclos de 1-2 semanas). Al final de cada sprint, 
+                        recibes un entregable funcional — no promesas, sino algo que puedes ver y probar. 
+                        Nos reunimos brevemente para revisar avances, ajustar prioridades y asegurarnos 
+                        de que el proyecto va en la dirección correcta. Cero sorpresas.
+                    </p>
+                    <div class="metodo-example">
+                        En la práctica: Semana 1 recibes el diseño y estructura base. Semana 2 las funcionalidades 
+                        principales. Semana 3 los ajustes finales y despliegue. Siempre con visibilidad total.
+                    </div>
+                </div>
+                <div class="lang-en">
+                    <p class="metodo-short">Iterative development with constant deliveries and direct communication.</p>
+                    <p class="metodo-detail">
+                        Every project is divided into sprints (1-2 week cycles). At the end of each sprint, 
+                        you receive a working deliverable — not promises, but something you can see and test. 
+                        We briefly meet to review progress, adjust priorities and make sure 
+                        the project is heading in the right direction. Zero surprises.
+                    </p>
+                    <div class="metodo-example">
+                        In practice: Week 1 you get the design and base structure. Week 2 the core features. 
+                        Week 3 final adjustments and deployment. Always with full visibility.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GUARANTEE — Hormozi risk reversal -->
+    <div class="guarantee-banner reveal">
+        <div class="guarantee-title lang-es">Mi garantía</div>
+        <div class="guarantee-title lang-en">My guarantee</div>
+        <p class="guarantee-text lang-es">
+            Si en la primera semana de trabajo no estás satisfecho con el avance y la comunicación, 
+            te devuelvo tu dinero. Sin preguntas. Así de simple.
+        </p>
+        <p class="guarantee-text lang-en">
+            If you're not satisfied with the progress and communication in the first week, 
+            I'll refund your money. No questions asked. That simple.
+        </p>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="section-index">003</div>
+    <div class="lang-es"><h2>Proyectos</h2></div>
+    <div class="lang-en"><h2>Projects</h2></div>
+    <div class="projects-container">
+        <div class="project-card reveal">
+            <div class="project-number">01</div>
+            <div class="project-content">
+                <div class="project-type lang-es">Plataforma Web</div>
+                <div class="project-type lang-en">Web Platform</div>
+                <div class="project-name">ARMONI.chat</div>
+                <p class="project-desc lang-es">
+                    Copiloto operativo para negocios. Gestión inteligente, 
+                    centralización de datos, automatización de procesos y una interfaz 
+                    diseñada para decisiones basadas en datos.
+                </p>
+                <p class="project-desc lang-en">
+                    Operational copilot for businesses. Smart management, 
+                    data centralization, process automation and an interface 
+                    designed for data-driven decisions.
+                </p>
+                <div class="project-tech">
+                    <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>UI/UX</span>
+                </div>
+            </div>
+            <div class="project-link-wrapper">
+                <a href="https://armoni.chat" target="_blank" class="project-link">
+                    <span class="lang-es-inline">Ver en vivo</span><span class="lang-en-inline">View live</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-number">02</div>
+            <div class="project-content">
+                <div class="project-type lang-es">Sitio Web Deportivo</div>
+                <div class="project-type lang-en">Sports Website</div>
+                <div class="project-name">ARMONI Team</div>
+                <p class="project-desc lang-es">
+                    Plataforma digital para una comunidad deportiva organizada. 
+                    Sistema de selección, gestión de miembros y presencia web profesional.
+                </p>
+                <p class="project-desc lang-en">
+                    Digital platform for an organized sports community. 
+                    Selection system, member management and professional web presence.
+                </p>
+                <div class="project-tech">
+                    <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Responsive</span>
+                </div>
+            </div>
+            <div class="project-link-wrapper">
+                <a href="#" class="project-link">
+                    <span class="lang-es-inline">Ver en vivo</span><span class="lang-en-inline">View live</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card reveal">
+            <div class="project-number">03</div>
+            <div class="project-content">
+                <div class="project-type lang-es">Inteligencia Artificial</div>
+                <div class="project-type lang-en">Artificial Intelligence</div>
+                <div class="project-name">ARMONI IA</div>
+                <p class="project-desc lang-es">
+                    Asistente de inteligencia artificial en Python. 
+                    Integración con APIs de procesamiento de lenguaje natural 
+                    para automatización y análisis inteligente.
+                </p>
+                <p class="project-desc lang-en">
+                    AI assistant built in Python. 
+                    NLP API integration for automation and intelligent analysis.
+                </p>
+                <div class="project-tech">
+                    <span>Python</span><span>API Integration</span><span>NLP</span><span>Automation</span>
+                </div>
+            </div>
+            <div class="project-link-wrapper">
+                <a href="https://github.com/joansebastianromanatavera-pixel" target="_blank" class="project-link">
+                    <span class="lang-es-inline">Ver código</span><span class="lang-en-inline">View code</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="section-index">004</div>
+    <div class="lang-es"><h2>Contacto</h2></div>
+    <div class="lang-en"><h2>Contact</h2></div>
+    <div class="contact-content">
+        <p class="contact-text lang-es">
+            Disponible para proyectos freelance de desarrollo web, 
+            automatización y soluciones con IA. Respondo en menos de 2 horas.
+        </p>
+        <p class="contact-text lang-en">
+            Available for freelance web development, 
+            automation and AI solutions. I respond within 2 hours.
+        </p>
+        <div class="contact-grid">
+            <a href="https://wa.me/573151110385?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20cotizar%20un%20proyecto." class="contact-box reveal">
+                <div>
+                    <div class="contact-label">WhatsApp</div>
+                    <div class="contact-value">+57 315 111 0385</div>
+                </div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="https://linkedin.com/in/tu-perfil" target="_blank" class="contact-item">
+            <a href="tel:+573151110385" class="contact-box reveal">
                 <div>
-                    <div class="contact-item-label">LinkedIn</div>
-                    <div class="contact-item-value">linkedin.com/in/tu-perfil</div>
+                    <div class="contact-label lang-es">Teléfono</div>
+                    <div class="contact-label lang-en">Phone</div>
+                    <div class="contact-value">+57 315 111 0385</div>
                 </div>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="https://github.com/tu-usuario" target="_blank" class="contact-item">
+            <a href="/cdn-cgi/l/email-protection#e8828789869b8d8a899b9c8189869a87858986899c899e8d9a89a88f85898184c68b8785" class="contact-box reveal">
                 <div>
-                    <div class="contact-item-label">GitHub</div>
-                    <div class="contact-item-value">github.com/tu-usuario</div>
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value"><span class="__cf_email__" data-cfemail="59333638372a3c3b382a2d3038372b36343837382d382f3c2b38193e34383035773a3634">[email&#160;protected]</span></div>
                 </div>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://github.com/joansebastianromanatavera-pixel" target="_blank" class="contact-box reveal">
+                <div>
+                    <div class="contact-label">GitHub</div>
+                    <div class="contact-value">github.com/joansebastianromanatavera-pixel</div>
+                </div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
         </div>
     </div>
 </section>
+
+<!-- FINAL CTA — Hormozi urgency -->
+<div class="final-cta">
+    <div class="final-cta-title lang-es">¿Listo para empezar?</div>
+    <div class="final-cta-title lang-en">Ready to start?</div>
+    <p class="final-cta-sub lang-es">
+        Escríbeme hoy y recibe una propuesta personalizada en menos de 24 horas.<br>
+        Sin compromiso. Sin letra pequeña.
+    </p>
+    <p class="final-cta-sub lang-en">
+        Message me today and get a custom proposal in less than 24 hours.<br>
+        No commitment. No fine print.
+    </p>
+    <a href="https://wa.me/573151110385?text=Hola,%20quiero%20una%20propuesta%20para%20mi%20proyecto." class="lang-es">
+        <span class="lang-es-inline">Escribir por WhatsApp</span>
+    </a>
+    <a href="https://wa.me/573151110385?text=Hi,%20I%20want%20a%20proposal%20for%20my%20project." class="lang-en">
+        Message on WhatsApp
+    </a>
+</div>
 
 <footer>
-    <p>&copy; 2026 — Romagna</p>
-    <p>Diseñado con disciplina</p>
+    <p>Romagna // Ecosistema ARMONI</p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// CURSOR
+const cursor = document.getElementById('custom-cursor');
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a, button, .tech-box, .project-card, .contact-box, .metodo-box').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover-grow'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover-grow'));
+});
+
+// SCROLL REVEAL
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
     });
 }, { threshold: 0.1 });
-
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// NAV SMOOTH SCROLL
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -731,6 +935,21 @@ document.querySelectorAll('.nav-links a').forEach(link => {
         document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
     });
 });
+
+// LANGUAGE TOGGLE
+function setLang(lang) {
+    document.body.classList.toggle('en', lang === 'en');
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+    });
+}
+
+// ACCORDION TOGGLE
+function toggleMetodo(box) {
+    const wasOpen = box.classList.contains('open');
+    document.querySelectorAll('.metodo-box').forEach(b => b.classList.remove('open'));
+    if (!wasOpen) box.classList.add('open');
+}
 </script>
 
 </body>
