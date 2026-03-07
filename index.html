@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio — Desarrollador de Software</title>
     <style>
-/* =================================================
-   PORTAFOLIO | ESTÉTICA ARMONI — TEMA CAMALEÓN
-   Hooks $100M Offers + Metodología SOLID & Scrum
-   ================================================= */
+
+/*INICIO de CSS*/
+
+
+/*estetica similar a la de armoni team pero modificada*/
+
+/*colores*/
+
+
+/*oscuro*/
 
 :root {
     --bg-color: #000000;
@@ -25,6 +31,8 @@
     --cursor-color: #ffffff;
     --cursor-blend: difference;
 }
+
+/*claro*/
 
 @media (prefers-color-scheme: light) {
     :root {
@@ -44,6 +52,8 @@
     }
 }
 
+/*puntero y uncionamiento*/
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 @media (pointer: fine) { * { cursor: none !important; } }
 @media (pointer: coarse), (hover: none) { #custom-cursor { display: none !important; } }
@@ -57,6 +67,8 @@ body {
     line-height: 1.8;
     letter-spacing: 0.5px;
 }
+
+/*cursor*/
 
 #custom-cursor {
     width: 12px; height: 12px;
@@ -81,7 +93,8 @@ body {
 ::-webkit-scrollbar-track { background: var(--bg-color); }
 ::-webkit-scrollbar-thumb { background: var(--text-color); }
 
-/* --- NAV --- */
+/*Bloques NAV (navegacion)*/
+
 nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
     padding: 20px 50px;
@@ -95,10 +108,11 @@ nav {
 .nav-links a { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-color); text-decoration: none; transition: color 0.3s; }
 .nav-links a:hover { color: var(--title-color); }
 
-/* LANGUAGE TOGGLE */
+/*Cambios de idioma*/
 .lang-toggle {
     display: flex; gap: 0; border: 1px solid var(--box-border); overflow: hidden;
 }
+/*ajustes de fuentes (Helvetica Neue)*/
 .lang-btn {
     padding: 6px 14px; font-size: 11px; letter-spacing: 2px;
     background: transparent; border: none; color: var(--text-color);
@@ -110,30 +124,33 @@ nav {
 .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
 .nav-toggle span { width: 22px; height: 1px; background: var(--title-color); }
 
-/* --- SECTIONS --- */
+/*secciones*/
 section { position: relative; z-index: 1; padding: 120px 80px; }
 .section-index { font-size: 12px; letter-spacing: 5px; text-transform: uppercase; color: var(--text-color); margin-bottom: 10px; }
 h2 { font-size: 13px; font-weight: 400; letter-spacing: 6px; text-transform: uppercase; color: var(--title-color); margin-bottom: 60px; padding-bottom: 15px; border-bottom: 1px solid var(--box-border); display: inline-block; }
 
-/* --- HERO --- */
-#hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 80px; border-bottom: 1px solid var(--box-border); }
+/*tamano y centrado de pagina*/
+#hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 80px; border-bottom: 1px solid var(--box-border); }
 .hero-label { font-size: 13px; letter-spacing: 5px; text-transform: uppercase; color: var(--text-color); margin-bottom: 30px; }
-.hero-title { font-size: clamp(2.5rem, 7vw, 6rem); font-weight: 100; letter-spacing: 12px; text-transform: uppercase; color: var(--title-color); line-height: 1.1; margin-bottom: 30px; }
-.hero-subtitle { max-width: 580px; font-size: 18px; color: var(--text-color); line-height: 2; letter-spacing: 0.5px; margin-bottom: 20px; }
+.hero-title { font-size: clamp(2rem, 5vw, 4.2rem); font-weight: 100; letter-spacing: 12px; text-transform: uppercase; color: var(--title-color); line-height: 1.1; margin-bottom: 30px; }
+.hero-subtitle { max-width: 580px; margin-left: auto; margin-right: auto; font-size: 18px; color: var(--text-color); line-height: 2; letter-spacing: 0.5px; margin-bottom: 20px; }
 
-/* HOOK — Hormozi value proposition */
+/*gancho de inicio de pagina*/
 .hero-hook {
     max-width: 580px;
-    font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
     color: var(--title-color);
     line-height: 1.9;
     letter-spacing: 0.5px;
     margin-bottom: 40px;
-    padding: 20px 25px;
-    border-left: 2px solid var(--title-color);
+    padding: 20px 30px;
+    border-left: none;
+    border-top: 1px solid var(--title-color);
+    border-bottom: 1px solid var(--title-color);
 }
 
-.hero-cta-group { display: flex; gap: 15px; flex-wrap: wrap; }
+.hero-cta-group { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
 
 .hero-cta {
     display: inline-block; padding: 18px 45px;
@@ -146,7 +163,7 @@ h2 { font-size: 13px; font-weight: 400; letter-spacing: 6px; text-transform: upp
 .hero-cta.primary { background: var(--title-color); color: var(--bg-color); }
 .hero-cta.primary:hover { background: transparent; color: var(--title-color); }
 
-/* --- ABOUT --- */
+/*sobre mi*/
 #about { border-bottom: 1px solid var(--box-border); }
 .about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; }
 .about-text { font-size: 16px; color: var(--text-color); line-height: 2.2; }
@@ -164,7 +181,7 @@ h2 { font-size: 13px; font-weight: 400; letter-spacing: 6px; text-transform: upp
 .tech-name { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: var(--title-color); font-weight: 400; transition: color 0.4s; }
 .tech-level { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-color); transition: color 0.4s; }
 
-/* --- METHODOLOGY (ACCORDION) --- */
+/*metodologias*/
 #metodologia { border-bottom: 1px solid var(--box-border); }
 .metodo-grid { display: flex; flex-direction: column; gap: 8px; }
 .metodo-box {
@@ -211,7 +228,7 @@ h2 { font-size: 13px; font-weight: 400; letter-spacing: 6px; text-transform: upp
     font-style: italic;
 }
 
-/* --- GUARANTEE BANNER (Hormozi) --- */
+/*banner*/
 .guarantee-banner {
     border: 1px solid var(--box-border);
     padding: 40px 50px;
@@ -221,7 +238,7 @@ h2 { font-size: 13px; font-weight: 400; letter-spacing: 6px; text-transform: upp
 .guarantee-title { font-size: 14px; letter-spacing: 5px; text-transform: uppercase; color: var(--title-color); margin-bottom: 10px; }
 .guarantee-text { font-size: 14px; color: var(--text-color); line-height: 1.9; max-width: 600px; margin: 0 auto; }
 
-/* --- PROJECTS --- */
+/*proyectos*/
 #projects { border-bottom: 1px solid var(--box-border); }
 .projects-container { display: flex; flex-direction: column; gap: 15px; }
 .project-card {
@@ -248,7 +265,7 @@ h2 { font-size: 13px; font-weight: 400; letter-spacing: 6px; text-transform: upp
 .project-link svg { width: 14px; height: 14px; transition: transform 0.3s; }
 .project-card:hover .project-link svg { transform: translate(3px, -3px); }
 
-/* --- CONTACT --- */
+/*contactos*/
 .contact-content { max-width: 650px; }
 .contact-text { font-size: 16px; color: var(--text-color); line-height: 2.2; margin-bottom: 50px; }
 .contact-grid { display: flex; flex-direction: column; gap: 8px; }
@@ -264,7 +281,7 @@ h2 { font-size: 13px; font-weight: 400; letter-spacing: 6px; text-transform: upp
 .contact-box svg { width: 14px; height: 14px; color: var(--text-color); transition: all 0.4s; }
 .contact-box:hover svg { transform: translateX(4px); }
 
-/* --- CTA FINAL (Hormozi) --- */
+/*CTA*/
 .final-cta {
     text-align: center;
     padding: 80px;
@@ -295,15 +312,15 @@ h2 { font-size: 13px; font-weight: 400; letter-spacing: 6px; text-transform: upp
 }
 .final-cta a:hover { background: transparent; color: var(--title-color); box-shadow: 0 0 30px rgba(150,150,150,0.2); }
 
-/* --- FOOTER --- */
+/*pie de pagina*/
 footer { text-align: center; padding: 50px; color: var(--text-color); border-top: 1px solid var(--box-border); }
 footer p { font-size: 12px; letter-spacing: 5px; text-transform: uppercase; }
 
-/* --- ANIMATIONS --- */
+/*animaciones*/
 .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* --- RESPONSIVE --- */
+/*adaptacion de pagina para celulares y dispositivos etc.. */
 @media (max-width: 1024px) {
     section { padding: 80px 40px; }
     #hero { padding: 0 40px; }
@@ -333,7 +350,8 @@ footer p { font-size: 12px; letter-spacing: 5px; text-transform: uppercase; }
     footer { padding: 30px 25px; }
 }
 
-/* --- LANG HIDDEN --- */
+/*Final de CSS*/
+
 .lang-en { display: none; }
 body.en .lang-es { display: none; }
 body.en .lang-en { display: block; }
@@ -347,8 +365,17 @@ body.en .lang-es-inline { display: none; }
 <div id="custom-cursor"></div>
 <div id="grid-overlay"></div>
 
-<!-- NAV -->
+
+
+
+<!--inicio de HTML-->
+
+<!-- navegacion y menus -->
+
 <nav>
+
+<!-- Logo -->
+
     <div class="logo">Romagna</div>
     <div class="nav-right">
         <div class="lang-toggle">
@@ -359,6 +386,9 @@ body.en .lang-es-inline { display: none; }
             <span></span><span></span><span></span>
         </button>
         <div class="nav-links">
+
+<!-- conexiones para ir directamente a la seccion -->
+
             <a href="#about"><span class="lang-es-inline">Sobre mí</span><span class="lang-en-inline">About</span></a>
             <a href="#metodologia"><span class="lang-es-inline">Metodología</span><span class="lang-en-inline">Methodology</span></a>
             <a href="#projects"><span class="lang-es-inline">Proyectos</span><span class="lang-en-inline">Projects</span></a>
@@ -367,14 +397,14 @@ body.en .lang-es-inline { display: none; }
     </div>
 </nav>
 
-<!-- HERO -->
+<!-- hero -->
+
 <section id="hero">
-    <!-- ESPAÑOL -->
     <div class="lang-es">
         <div class="hero-label">Desarrollador de Software — Colombia</div>
         <h1 class="hero-title">Lo que imaginas,<br>yo lo construyo.</h1>
         <p class="hero-subtitle">
-            Desarrollo sitios web, plataformas y soluciones con inteligencia artificial 
+            Desarrollo sitios web, plataformas y desarrollo con inteligencia artificial 
             que generan resultados reales para tu negocio.
         </p>
         <div class="hero-hook">
@@ -387,13 +417,13 @@ body.en .lang-es-inline { display: none; }
             <a href="#projects" class="hero-cta">Ver proyectos</a>
         </div>
     </div>
-    <!-- ENGLISH -->
     <div class="lang-en">
         <div class="hero-label">Software Developer — Colombia</div>
         <h1 class="hero-title">What you imagine,<br>I build it.</h1>
         <p class="hero-subtitle">
-            I build websites, platforms and AI-powered solutions 
-            that deliver real results for your business.
+           I develop websites, platforms, and AI-powered solutions that 
+           deliver real results for your business.
+
         </p>
         <div class="hero-hook">
             <strong>I don't charge by the hour. I charge by results.</strong><br>
@@ -407,550 +437,183 @@ body.en .lang-es-inline { display: none; }
     </div>
 </section>
 
-<!-- ABOUT -->
+<!-- sobre mi -->
+
 <section id="about">
-    <div class="section-index">001</div>
+    <div class="section-index">1</div>
     <div class="lang-es"><h2>Sobre mí</h2></div>
     <div class="lang-en"><h2>About me</h2></div>
     <div class="about-grid">
         <div class="about-text">
             <div class="lang-es">
-                <p>
-                    Soy estudiante de <strong>Ingeniería de Software</strong> en tercer semestre, 
-                    basado en Colombia. Desde el inicio de mi carrera he priorizado construir 
-                    proyectos reales sobre solo estudiar teoría.
-                </p>
-                <p>
-                    Fundé el <strong>Ecosistema ARMONI</strong> — un conjunto de plataformas que 
-                    abarca desde sitios web corporativos hasta inteligencia artificial aplicada. 
-                    Cada proyecto nace de una necesidad concreta y se ejecuta con disciplina.
-                </p>
-                <p>
-                    Disponible para <strong>freelance remoto</strong>. Si tienes un proyecto que 
-                    necesita cobrar vida, hablemos.
-                </p>
+                <p>Soy estudiante de <strong>Ingeniería de Software</strong> en tercer semestre, basado en Colombia. Desde el inicio de mi carrera he priorizado construir proyectos reales sobre solo estudiar teoría.</p>
+                <p>Fundé el <strong>Ecosistema ARMONI</strong> — un conjunto de plataformas que abarca desde sitios web corporativos hasta inteligencia artificial aplicada. Cada proyecto nace de una necesidad concreta y se ejecuta con disciplina.</p>
+                <p>Disponible para <strong>freelance remoto</strong>. Si tienes un proyecto que necesita cobrar vida, hablemos.</p>
             </div>
             <div class="lang-en">
-                <p>
-                    I'm a <strong>Software Engineering</strong> student (3rd semester), 
-                    based in Colombia. Since day one, I've prioritized building 
-                    real projects over just studying theory.
-                </p>
-                <p>
-                    I founded the <strong>ARMONI Ecosystem</strong> — a set of platforms 
-                    ranging from corporate websites to applied artificial intelligence. 
-                    Every project is born from a real need and executed with discipline.
-                </p>
-                <p>
-                    Available for <strong>remote freelance</strong>. If you have a project that 
-                    needs to come alive, let's talk.
-                </p>
+                <p>I'm a <strong>Software Engineering</strong> student (3rd semester), based in Colombia. Since day one, I've prioritized building real projects over just studying theory.</p>
+                <p>I founded the <strong>ARMONI Ecosystem</strong> — a set of platforms ranging from corporate websites to applied artificial intelligence. Every project is born from a real need and executed with discipline.</p>
+                <p>Available for <strong>remote freelance</strong>. If you have a project that needs to come alive, let's talk.</p>
             </div>
         </div>
         <div class="tech-grid">
-            <div class="tech-box reveal">
-                <span class="tech-name">HTML5</span>
-                <span class="tech-level"><span class="lang-es-inline">Intermedio–Avanzado</span><span class="lang-en-inline">Mid–Advanced</span></span>
-            </div>
-            <div class="tech-box reveal">
-                <span class="tech-name">CSS3</span>
-                <span class="tech-level"><span class="lang-es-inline">Intermedio–Avanzado</span><span class="lang-en-inline">Mid–Advanced</span></span>
-            </div>
-            <div class="tech-box reveal">
-                <span class="tech-name">JavaScript</span>
-                <span class="tech-level"><span class="lang-es-inline">Intermedio</span><span class="lang-en-inline">Intermediate</span></span>
-            </div>
-            <div class="tech-box reveal">
-                <span class="tech-name">Java</span>
-                <span class="tech-level"><span class="lang-es-inline">Intermedio</span><span class="lang-en-inline">Intermediate</span></span>
-            </div>
-            <div class="tech-box reveal">
-                <span class="tech-name">Python</span>
-                <span class="tech-level"><span class="lang-es-inline">Intermedio</span><span class="lang-en-inline">Intermediate</span></span>
-            </div>
+            <div class="tech-box reveal"><span class="tech-name">HTML5</span><span class="tech-level"><span class="lang-es-inline">Intermedio–Avanzado</span><span class="lang-en-inline">Mid–Advanced</span></span></div>
+            <div class="tech-box reveal"><span class="tech-name">CSS3</span><span class="tech-level"><span class="lang-es-inline">Intermedio–Avanzado</span><span class="lang-en-inline">Mid–Advanced</span></span></div>
+            <div class="tech-box reveal"><span class="tech-name">JavaScript</span><span class="tech-level"><span class="lang-es-inline">Intermedio</span><span class="lang-en-inline">Intermediate</span></span></div>
+            <div class="tech-box reveal"><span class="tech-name">Java</span><span class="tech-level"><span class="lang-es-inline">Intermedio</span><span class="lang-en-inline">Intermediate</span></span></div>
+            <div class="tech-box reveal"><span class="tech-name">Python</span><span class="tech-level"><span class="lang-es-inline">Intermedio</span><span class="lang-en-inline">Intermediate</span></span></div>
         </div>
     </div>
 </section>
 
-<!-- METHODOLOGY -->
+<!-- metodologia -->
+
 <section id="metodologia">
-    <div class="section-index">002</div>
+    <div class="section-index">2</div>
     <div class="lang-es"><h2>Metodología de trabajo</h2></div>
     <div class="lang-en"><h2>Work methodology</h2></div>
-
     <div class="about-text" style="max-width: 700px; margin-bottom: 50px;">
-        <div class="lang-es">
-            <p>
-                No solo escribo código — lo estructuro con <strong>principios de ingeniería profesional</strong>. 
-                Aplico SOLID para que cada componente sea mantenible y escalable. Trabajo bajo 
-                <strong>Scrum</strong>, con sprints, entregables semanales y visibilidad total del avance.
-            </p>
-        </div>
-        <div class="lang-en">
-            <p>
-                I don't just write code — I structure it with <strong>professional engineering principles</strong>. 
-                I apply SOLID so every component is maintainable and scalable. I work under 
-                <strong>Scrum</strong>, with sprints, weekly deliverables and full progress visibility.
-            </p>
-        </div>
+        <div class="lang-es"><p>No solo escribo código — lo estructuro con <strong>principios de ingeniería profesional</strong>. Aplico SOLID para que cada componente sea mantenible y escalable. Trabajo bajo <strong>Scrum</strong>, con sprints, entregables semanales y visibilidad total del avance.</p></div>
+        <div class="lang-en"><p>I don't just write code — I structure it with <strong>professional engineering principles</strong>. I apply SOLID so every component is maintainable and scalable. I work under <strong>Scrum</strong>, with sprints, weekly deliverables and full progress visibility.</p></div>
     </div>
-
     <div class="metodo-grid">
-        <!-- S -->
-        <div class="metodo-box reveal" onclick="toggleMetodo(this)">
-            <div class="metodo-header">
-                <div class="metodo-header-left">
-                    <span class="metodo-letter">S</span>
-                    <span class="metodo-title">Single Responsibility</span>
-                </div>
-                <span class="metodo-toggle">+</span>
-            </div>
-            <div class="metodo-body">
-                <div class="lang-es">
-                    <p class="metodo-short">Cada clase, módulo o función debe tener una única razón para cambiar.</p>
-                    <p class="metodo-detail">
-                        Esto significa que cada componente del código hace exactamente una cosa y la hace bien. 
-                        Si un módulo maneja tanto la lógica de negocio como la conexión a base de datos, 
-                        se separan en dos. El resultado: código más limpio, más fácil de testear, 
-                        más fácil de mantener y menos propenso a errores cuando se hacen cambios.
-                    </p>
-                    <div class="metodo-example">
-                        Ejemplo: En vez de tener una función que valida datos, los guarda en base de datos Y envía un email, 
-                        creo tres funciones separadas. Si el cliente de email cambia, solo toco una función.
-                    </div>
-                </div>
-                <div class="lang-en">
-                    <p class="metodo-short">Each class, module or function should have only one reason to change.</p>
-                    <p class="metodo-detail">
-                        This means every code component does exactly one thing and does it well. 
-                        If a module handles both business logic and database connections, 
-                        they get separated. The result: cleaner code, easier to test, 
-                        easier to maintain, and less error-prone when making changes.
-                    </p>
-                    <div class="metodo-example">
-                        Example: Instead of one function that validates data, saves to database AND sends an email, 
-                        I create three separate functions. If the email client changes, I only touch one function.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- O -->
-        <div class="metodo-box reveal" onclick="toggleMetodo(this)">
-            <div class="metodo-header">
-                <div class="metodo-header-left">
-                    <span class="metodo-letter">O</span>
-                    <span class="metodo-title">Open / Closed</span>
-                </div>
-                <span class="metodo-toggle">+</span>
-            </div>
-            <div class="metodo-body">
-                <div class="lang-es">
-                    <p class="metodo-short">Abierto para extensión, cerrado para modificación.</p>
-                    <p class="metodo-detail">
-                        El código existente que ya funciona no se toca. Cuando necesitas agregar funcionalidad nueva, 
-                        la extiendes sin modificar lo que ya está probado y funcionando. Esto protege la estabilidad 
-                        del proyecto mientras crece. Tu sitio web puede evolucionar sin que cada actualización 
-                        rompa algo que ya estaba bien.
-                    </p>
-                    <div class="metodo-example">
-                        Ejemplo: Si tu plataforma tiene un sistema de pagos con Nequi y quieres agregar Daviplata, 
-                        creo un nuevo módulo de pago sin tocar el de Nequi. Ambos coexisten perfectamente.
-                    </div>
-                </div>
-                <div class="lang-en">
-                    <p class="metodo-short">Open for extension, closed for modification.</p>
-                    <p class="metodo-detail">
-                        Existing working code stays untouched. When you need new functionality, 
-                        it's extended without modifying what's already tested and working. This protects 
-                        project stability while it grows. Your website can evolve without every update 
-                        breaking something that was already fine.
-                    </p>
-                    <div class="metodo-example">
-                        Example: If your platform has a Nequi payment system and you want to add Daviplata, 
-                        I create a new payment module without touching Nequi. Both coexist perfectly.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- L -->
-        <div class="metodo-box reveal" onclick="toggleMetodo(this)">
-            <div class="metodo-header">
-                <div class="metodo-header-left">
-                    <span class="metodo-letter">L</span>
-                    <span class="metodo-title">Liskov Substitution</span>
-                </div>
-                <span class="metodo-toggle">+</span>
-            </div>
-            <div class="metodo-body">
-                <div class="lang-es">
-                    <p class="metodo-short">Los componentes hijos deben poder reemplazar a los padres sin romper el sistema.</p>
-                    <p class="metodo-detail">
-                        Si tienes un componente base que funciona de cierta manera, cualquier variación de ese 
-                        componente debe comportarse de forma compatible. Esto garantiza que puedes intercambiar 
-                        piezas del sistema sin efectos secundarios inesperados. Es como cambiar una pieza de un 
-                        motor — la nueva debe encajar exactamente donde estaba la anterior.
-                    </p>
-                    <div class="metodo-example">
-                        Ejemplo: Si tu sitio usa un componente de "Tarjeta de Producto", puedo crear 
-                        "Tarjeta de Producto Premium" que extiende la original sin romper las páginas 
-                        donde ya se usa la tarjeta base.
-                    </div>
-                </div>
-                <div class="lang-en">
-                    <p class="metodo-short">Child components must be able to replace parents without breaking the system.</p>
-                    <p class="metodo-detail">
-                        If you have a base component that works in a certain way, any variation of that 
-                        component must behave compatibly. This guarantees you can swap system parts 
-                        without unexpected side effects. It's like changing an engine part — the new one 
-                        must fit exactly where the previous one was.
-                    </p>
-                    <div class="metodo-example">
-                        Example: If your site uses a "Product Card" component, I can create 
-                        "Premium Product Card" that extends the original without breaking pages 
-                        where the base card is already used.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- I -->
-        <div class="metodo-box reveal" onclick="toggleMetodo(this)">
-            <div class="metodo-header">
-                <div class="metodo-header-left">
-                    <span class="metodo-letter">I</span>
-                    <span class="metodo-title">Interface Segregation</span>
-                </div>
-                <span class="metodo-toggle">+</span>
-            </div>
-            <div class="metodo-body">
-                <div class="lang-es">
-                    <p class="metodo-short">Ningún componente debe depender de funciones que no necesita.</p>
-                    <p class="metodo-detail">
-                        En vez de crear un módulo gigante que hace todo, creo interfaces pequeñas y específicas. 
-                        Cada parte del sistema solo conoce y depende de lo que realmente necesita. Esto hace 
-                        que el código sea más ligero, más rápido y mucho más fácil de modificar sin 
-                        efectos en cadena.
-                    </p>
-                    <div class="metodo-example">
-                        Ejemplo: Un módulo de autenticación no necesita saber nada sobre el carrito de compras. 
-                        Cada uno opera de forma independiente con interfaces claras de comunicación.
-                    </div>
-                </div>
-                <div class="lang-en">
-                    <p class="metodo-short">No component should depend on functions it doesn't need.</p>
-                    <p class="metodo-detail">
-                        Instead of creating one massive module that does everything, I build small, specific interfaces. 
-                        Each part of the system only knows and depends on what it actually needs. This makes 
-                        code lighter, faster, and much easier to modify without cascading effects.
-                    </p>
-                    <div class="metodo-example">
-                        Example: An authentication module doesn't need to know anything about the shopping cart. 
-                        Each one operates independently with clear communication interfaces.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- D -->
-        <div class="metodo-box reveal" onclick="toggleMetodo(this)">
-            <div class="metodo-header">
-                <div class="metodo-header-left">
-                    <span class="metodo-letter">D</span>
-                    <span class="metodo-title">Dependency Inversion</span>
-                </div>
-                <span class="metodo-toggle">+</span>
-            </div>
-            <div class="metodo-body">
-                <div class="lang-es">
-                    <p class="metodo-short">Los módulos de alto nivel no dependen de los de bajo nivel. Ambos dependen de abstracciones.</p>
-                    <p class="metodo-detail">
-                        La arquitectura se diseña de arriba hacia abajo. Los componentes principales no están 
-                        atados a implementaciones específicas, sino a contratos generales. Esto permite 
-                        cambiar la base de datos, el servidor o cualquier herramienta sin reescribir 
-                        la lógica del negocio.
-                    </p>
-                    <div class="metodo-example">
-                        Ejemplo: Si hoy tu proyecto usa MySQL y mañana necesitas migrar a PostgreSQL, 
-                        la capa de lógica de negocio no se toca. Solo cambio la implementación del acceso a datos.
-                    </div>
-                </div>
-                <div class="lang-en">
-                    <p class="metodo-short">High-level modules don't depend on low-level ones. Both depend on abstractions.</p>
-                    <p class="metodo-detail">
-                        Architecture is designed top-down. Core components aren't tied to specific 
-                        implementations but to general contracts. This allows changing the database, 
-                        server or any tool without rewriting business logic.
-                    </p>
-                    <div class="metodo-example">
-                        Example: If today your project uses MySQL and tomorrow you need PostgreSQL, 
-                        the business logic layer stays untouched. I only change the data access implementation.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SCRUM -->
-        <div class="metodo-box reveal" onclick="toggleMetodo(this)">
-            <div class="metodo-header">
-                <div class="metodo-header-left">
-                    <span class="metodo-letter">&#9654;</span>
-                    <span class="metodo-title">Scrum — Metodología Ágil</span>
-                </div>
-                <span class="metodo-toggle">+</span>
-            </div>
-            <div class="metodo-body">
-                <div class="lang-es">
-                    <p class="metodo-short">Desarrollo iterativo con entregas constantes y comunicación directa.</p>
-                    <p class="metodo-detail">
-                        Cada proyecto se divide en sprints (ciclos de 1-2 semanas). Al final de cada sprint, 
-                        recibes un entregable funcional — no promesas, sino algo que puedes ver y probar. 
-                        Nos reunimos brevemente para revisar avances, ajustar prioridades y asegurarnos 
-                        de que el proyecto va en la dirección correcta. Cero sorpresas.
-                    </p>
-                    <div class="metodo-example">
-                        En la práctica: Semana 1 recibes el diseño y estructura base. Semana 2 las funcionalidades 
-                        principales. Semana 3 los ajustes finales y despliegue. Siempre con visibilidad total.
-                    </div>
-                </div>
-                <div class="lang-en">
-                    <p class="metodo-short">Iterative development with constant deliveries and direct communication.</p>
-                    <p class="metodo-detail">
-                        Every project is divided into sprints (1-2 week cycles). At the end of each sprint, 
-                        you receive a working deliverable — not promises, but something you can see and test. 
-                        We briefly meet to review progress, adjust priorities and make sure 
-                        the project is heading in the right direction. Zero surprises.
-                    </p>
-                    <div class="metodo-example">
-                        In practice: Week 1 you get the design and base structure. Week 2 the core features. 
-                        Week 3 final adjustments and deployment. Always with full visibility.
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="metodo-box reveal" onclick="toggleMetodo(this)"><div class="metodo-header"><div class="metodo-header-left"><span class="metodo-letter">S</span><span class="metodo-title">Single Responsibility</span></div><span class="metodo-toggle">+</span></div><div class="metodo-body"><div class="lang-es"><p class="metodo-short">Cada clase, módulo o función debe tener una única razón para cambiar.</p><p class="metodo-detail">Esto significa que cada componente del código hace exactamente una cosa y la hace bien. Si un módulo maneja tanto la lógica de negocio como la conexión a base de datos, se separan en dos. El resultado: código más limpio, más fácil de testear, más fácil de mantener y menos propenso a errores cuando se hacen cambios.</p><div class="metodo-example">Ejemplo: En vez de tener una función que valida datos, los guarda en base de datos Y envía un email, creo tres funciones separadas. Si el cliente de email cambia, solo toco una función.</div></div><div class="lang-en"><p class="metodo-short">Each class, module or function should have only one reason to change.</p><p class="metodo-detail">This means every code component does exactly one thing and does it well. If a module handles both business logic and database connections, they get separated. The result: cleaner code, easier to test, easier to maintain, and less error-prone when making changes.</p><div class="metodo-example">Example: Instead of one function that validates data, saves to database AND sends an email, I create three separate functions. If the email client changes, I only touch one function.</div></div></div></div>
+        <div class="metodo-box reveal" onclick="toggleMetodo(this)"><div class="metodo-header"><div class="metodo-header-left"><span class="metodo-letter">O</span><span class="metodo-title">Open / Closed</span></div><span class="metodo-toggle">+</span></div><div class="metodo-body"><div class="lang-es"><p class="metodo-short">Abierto para extensión, cerrado para modificación.</p><p class="metodo-detail">El código existente que ya funciona no se toca. Cuando necesitas agregar funcionalidad nueva, la extiendes sin modificar lo que ya está probado y funcionando. Esto protege la estabilidad del proyecto mientras crece.</p><div class="metodo-example">Ejemplo: Si tu plataforma tiene un sistema de pagos con Nequi y quieres agregar Daviplata, creo un nuevo módulo de pago sin tocar el de Nequi. Ambos coexisten perfectamente.</div></div><div class="lang-en"><p class="metodo-short">Open for extension, closed for modification.</p><p class="metodo-detail">Existing working code stays untouched. When you need new functionality, it's extended without modifying what's already tested and working. This protects project stability while it grows.</p><div class="metodo-example">Example: If your platform has a Nequi payment system and you want to add Daviplata, I create a new payment module without touching Nequi. Both coexist perfectly.</div></div></div></div>
+        <div class="metodo-box reveal" onclick="toggleMetodo(this)"><div class="metodo-header"><div class="metodo-header-left"><span class="metodo-letter">L</span><span class="metodo-title">Liskov Substitution</span></div><span class="metodo-toggle">+</span></div><div class="metodo-body"><div class="lang-es"><p class="metodo-short">Los componentes hijos deben poder reemplazar a los padres sin romper el sistema.</p><p class="metodo-detail">Si tienes un componente base que funciona de cierta manera, cualquier variación de ese componente debe comportarse de forma compatible. Esto garantiza que puedes intercambiar piezas del sistema sin efectos secundarios inesperados.</p><div class="metodo-example">Ejemplo: Si tu sitio usa un componente de "Tarjeta de Producto", puedo crear "Tarjeta de Producto Premium" que extiende la original sin romper las páginas donde ya se usa la tarjeta base.</div></div><div class="lang-en"><p class="metodo-short">Child components must be able to replace parents without breaking the system.</p><p class="metodo-detail">If you have a base component that works in a certain way, any variation of that component must behave compatibly. This guarantees you can swap system parts without unexpected side effects.</p><div class="metodo-example">Example: If your site uses a "Product Card" component, I can create "Premium Product Card" that extends the original without breaking pages where the base card is already used.</div></div></div></div>
+        <div class="metodo-box reveal" onclick="toggleMetodo(this)"><div class="metodo-header"><div class="metodo-header-left"><span class="metodo-letter">I</span><span class="metodo-title">Interface Segregation</span></div><span class="metodo-toggle">+</span></div><div class="metodo-body"><div class="lang-es"><p class="metodo-short">Ningún componente debe depender de funciones que no necesita.</p><p class="metodo-detail">En vez de crear un módulo gigante que hace todo, creo interfaces pequeñas y específicas. Cada parte del sistema solo conoce y depende de lo que realmente necesita. Esto hace que el código sea más ligero, más rápido y mucho más fácil de modificar sin efectos en cadena.</p><div class="metodo-example">Ejemplo: Un módulo de autenticación no necesita saber nada sobre el carrito de compras. Cada uno opera de forma independiente con interfaces claras de comunicación.</div></div><div class="lang-en"><p class="metodo-short">No component should depend on functions it doesn't need.</p><p class="metodo-detail">Instead of creating one massive module that does everything, I build small, specific interfaces. Each part of the system only knows and depends on what it actually needs. This makes code lighter, faster, and much easier to modify without cascading effects.</p><div class="metodo-example">Example: An authentication module doesn't need to know anything about the shopping cart. Each one operates independently with clear communication interfaces.</div></div></div></div>
+        <div class="metodo-box reveal" onclick="toggleMetodo(this)"><div class="metodo-header"><div class="metodo-header-left"><span class="metodo-letter">D</span><span class="metodo-title">Dependency Inversion</span></div><span class="metodo-toggle">+</span></div><div class="metodo-body"><div class="lang-es"><p class="metodo-short">Los módulos de alto nivel no dependen de los de bajo nivel. Ambos dependen de abstracciones.</p><p class="metodo-detail">La arquitectura se diseña de arriba hacia abajo. Los componentes principales no están atados a implementaciones específicas, sino a contratos generales. Esto permite cambiar la base de datos, el servidor o cualquier herramienta sin reescribir la lógica del negocio.</p><div class="metodo-example">Ejemplo: Si hoy tu proyecto usa MySQL y mañana necesitas migrar a PostgreSQL, la capa de lógica de negocio no se toca. Solo cambio la implementación del acceso a datos.</div></div><div class="lang-en"><p class="metodo-short">High-level modules don't depend on low-level ones. Both depend on abstractions.</p><p class="metodo-detail">Architecture is designed top-down. Core components aren't tied to specific implementations but to general contracts. This allows changing the database, server or any tool without rewriting business logic.</p><div class="metodo-example">Example: If today your project uses MySQL and tomorrow you need PostgreSQL, the business logic layer stays untouched. I only change the data access implementation.</div></div></div></div>
+        <div class="metodo-box reveal" onclick="toggleMetodo(this)"><div class="metodo-header"><div class="metodo-header-left"><span class="metodo-letter">&#9654;</span><span class="metodo-title">Scrum — Metodología Ágil</span></div><span class="metodo-toggle">+</span></div><div class="metodo-body"><div class="lang-es"><p class="metodo-short">Desarrollo iterativo con entregas constantes y comunicación directa.</p><p class="metodo-detail">Cada proyecto se divide en sprints (ciclos de 1-2 semanas). Al final de cada sprint, recibes un entregable funcional — no promesas, sino algo que puedes ver y probar. Nos reunimos brevemente para revisar avances, ajustar prioridades y asegurarnos de que el proyecto va en la dirección correcta. Cero sorpresas.</p><div class="metodo-example">En la práctica: Semana 1 recibes el diseño y estructura base. Semana 2 las funcionalidades principales. Semana 3 los ajustes finales y despliegue. Siempre con visibilidad total.</div></div><div class="lang-en"><p class="metodo-short">Iterative development with constant deliveries and direct communication.</p><p class="metodo-detail">Every project is divided into sprints (1-2 week cycles). At the end of each sprint, you receive a working deliverable — not promises, but something you can see and test. We briefly meet to review progress, adjust priorities and make sure the project is heading in the right direction. Zero surprises.</p><div class="metodo-example">In practice: Week 1 you get the design and base structure. Week 2 the core features. Week 3 final adjustments and deployment. Always with full visibility.</div></div></div></div>
     </div>
-
-    <!-- GUARANTEE — Hormozi risk reversal -->
     <div class="guarantee-banner reveal">
         <div class="guarantee-title lang-es">Mi garantía</div>
         <div class="guarantee-title lang-en">My guarantee</div>
-        <p class="guarantee-text lang-es">
-            Si en la primera semana de trabajo no estás satisfecho con el avance y la comunicación, 
-            te devuelvo tu dinero. Sin preguntas. Así de simple.
-        </p>
-        <p class="guarantee-text lang-en">
-            If you're not satisfied with the progress and communication in the first week, 
-            I'll refund your money. No questions asked. That simple.
-        </p>
+        <p class="guarantee-text lang-es">Si en la primera semana de trabajo no estás satisfecho con el avance y la comunicación, te devuelvo tu dinero. Sin preguntas. Así de simple.</p>
+        <p class="guarantee-text lang-en">If you're not satisfied with the progress and communication in the first week, I'll refund your money. No questions asked. That simple.</p>
     </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- proyectos -->
+
 <section id="projects">
-    <div class="section-index">003</div>
+    <div class="section-index">3</div>
     <div class="lang-es"><h2>Proyectos</h2></div>
     <div class="lang-en"><h2>Projects</h2></div>
     <div class="projects-container">
         <div class="project-card reveal">
-            <div class="project-number">01</div>
+            <div class="project-number">1</div>
             <div class="project-content">
                 <div class="project-type lang-es">Plataforma Web</div>
                 <div class="project-type lang-en">Web Platform</div>
                 <div class="project-name">ARMONI.chat</div>
-                <p class="project-desc lang-es">
-                    Copiloto operativo para negocios. Gestión inteligente, 
-                    centralización de datos, automatización de procesos y una interfaz 
-                    diseñada para decisiones basadas en datos.
-                </p>
-                <p class="project-desc lang-en">
-                    Operational copilot for businesses. Smart management, 
-                    data centralization, process automation and an interface 
-                    designed for data-driven decisions.
-                </p>
-                <div class="project-tech">
-                    <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>UI/UX</span>
-                </div>
+                <p class="project-desc lang-es">Copiloto operativo para negocios. Gestión inteligente, centralización de datos, automatización de procesos y una interfaz diseñada para decisiones basadas en datos.</p>
+                <p class="project-desc lang-en">Operational copilot for businesses. Smart management, data centralization, process automation and an interface designed for data-driven decisions.</p>
+                <div class="project-tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>UI/UX</span></div>
             </div>
-            <div class="project-link-wrapper">
-                <a href="https://armoni.chat" target="_blank" class="project-link">
-                    <span class="lang-es-inline">Ver en vivo</span><span class="lang-en-inline">View live</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                </a>
-            </div>
+            <div class="project-link-wrapper"><a href="https://armoni.chat" target="_blank" class="project-link"><span class="lang-es-inline">Ver en vivo</span><span class="lang-en-inline">View live</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
         </div>
-
         <div class="project-card reveal">
-            <div class="project-number">02</div>
+            <div class="project-number">2</div>
             <div class="project-content">
                 <div class="project-type lang-es">Sitio Web Deportivo</div>
                 <div class="project-type lang-en">Sports Website</div>
                 <div class="project-name">ARMONI Team</div>
-                <p class="project-desc lang-es">
-                    Plataforma digital para una comunidad deportiva organizada. 
-                    Sistema de selección, gestión de miembros y presencia web profesional.
-                </p>
-                <p class="project-desc lang-en">
-                    Digital platform for an organized sports community. 
-                    Selection system, member management and professional web presence.
-                </p>
-                <div class="project-tech">
-                    <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Responsive</span>
-                </div>
+                <p class="project-desc lang-es">Plataforma digital para una comunidad deportiva organizada. Sistema de selección, gestión de miembros y presencia web profesional.</p>
+                <p class="project-desc lang-en">Digital platform for an organized sports community. Selection system, member management and professional web presence.</p>
+                <div class="project-tech"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Responsive</span></div>
             </div>
-            <div class="project-link-wrapper">
-                <a href="https://armoni.team" target="_blank" class="project-link">
-                    <span class="lang-es-inline">Ver en vivo</span><span class="lang-en-inline">View live</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                </a>
-            </div>
+            <div class="project-link-wrapper"><a href="https://armoni.chat" target="_blank" class="project-link"><span class="lang-es-inline">Ver en vivo</span><span class="lang-en-inline">View live</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
         </div>
-
         <div class="project-card reveal">
-            <div class="project-number">03</div>
+            <div class="project-number">3</div>
             <div class="project-content">
                 <div class="project-type lang-es">Inteligencia Artificial</div>
                 <div class="project-type lang-en">Artificial Intelligence</div>
                 <div class="project-name">ARMONI IA</div>
-                <p class="project-desc lang-es">
-                    Asistente de inteligencia artificial en Python. 
-                    Integración con APIs de procesamiento de lenguaje natural 
-                    para automatización y análisis inteligente.
-                </p>
-                <p class="project-desc lang-en">
-                    AI assistant built in Python. 
-                    NLP API integration for automation and intelligent analysis.
-                </p>
-                <div class="project-tech">
-                    <span>Python</span><span>API Integration</span><span>NLP</span><span>Automation</span>
-                </div>
+                <p class="project-desc lang-es">Asistente de inteligencia artificial en Python. Integración con APIs de procesamiento de lenguaje natural para automatización y análisis inteligente.</p>
+                <p class="project-desc lang-en">AI assistant built in Python. NLP API integration for automation and intelligent analysis.</p>
+                <div class="project-tech"><span>Python</span><span>API Integration</span><span>NLP</span><span>Automation</span></div>
             </div>
-            <div class="project-link-wrapper">
-                <a href="https://github.com/joansebastianromanatavera-pixel" target="_blank" class="project-link">
-                    <span class="lang-es-inline">Ver código</span><span class="lang-en-inline">View code</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                </a>
-            </div>
+            <div class="project-link-wrapper"><a href="https://github.com/joansebastianromanatavera-pixel/armoni-ia" target="_blank" class="project-link"><span class="lang-es-inline">Ver código</span><span class="lang-en-inline">View code</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div>
         </div>
     </div>
 </section>
 
-<!-- CONTACT -->
+<!-- contacto -->
+
 <section id="contact">
-    <div class="section-index">004</div>
+    <div class="section-index">4</div>
     <div class="lang-es"><h2>Contacto</h2></div>
     <div class="lang-en"><h2>Contact</h2></div>
     <div class="contact-content">
-        <p class="contact-text lang-es">
-            Disponible para proyectos freelance de desarrollo web, 
-            automatización y soluciones con IA. Respondo en menos de 2 horas.
-        </p>
-        <p class="contact-text lang-en">
-            Available for freelance web development, 
-            automation and AI solutions. I respond within 2 hours.
-        </p>
+        <p class="contact-text lang-es">Disponible para proyectos freelance de desarrollo web, automatización y soluciones con IA. Respondo en menos de 2 horas.</p>
+        <p class="contact-text lang-en">Available for freelance web development, automation and AI solutions. I respond within 2 hours.</p>
         <div class="contact-grid">
+
+<!-- whatsapp -->
+
             <a href="https://wa.me/573238181844?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20cotizar%20un%20proyecto." class="contact-box reveal">
-                <div>
-                    <div class="contact-label">WhatsApp</div>
-                    <div class="contact-value">+57 323 818 1844</div>
-                </div>
+                <div><div class="contact-label">WhatsApp</div><div class="contact-value">+57 323 818 1844</div></div>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
+
+<!-- telefono -->
+
             <a href="tel:+573238181844" class="contact-box reveal">
-                <div>
-                    <div class="contact-label lang-es">Teléfono</div>
-                    <div class="contact-label lang-en">Phone</div>
-                    <div class="contact-value">+57 323 818 1844</div>
-                </div>
+                <div><div class="contact-label lang-es">Teléfono</div><div class="contact-label lang-en">Phone</div><div class="contact-value">+57 323 818 1844</div></div>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
+
+<!-- correo -->
+
             <a href="mailto:joansebastianromanatavera@gmail.com" class="contact-box reveal">
-                <div>
-                    <div class="contact-label">Email</div>
-                    <div class="contact-value">joansebastianromanatavera@gmail.com</div>
-                </div>
+                <div><div class="contact-label">Email</div><div class="contact-value">joansebastianromanatavera@gmail.com</div></div>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/joan-sebastian-roma%C3%B1a-tavera-01a7b1352/" target="_blank" class="contact-box reveal">
+                <div><div class="contact-label">LinkedIn</div><div class="contact-value">Joan Sebastian Romaña Tavera</div></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+
+<!-- linkedin -->
+
             </a>
             <a href="https://github.com/joansebastianromanatavera-pixel" target="_blank" class="contact-box reveal">
-                <div>
-                    <div class="contact-label">GitHub</div>
-                    <div class="contact-value">github.com/joansebastianromanatavera-pixel</div>
-                </div>
+                <div><div class="contact-label">GitHub</div><div class="contact-value">github.com/joansebastianromanatavera-pixel</div></div>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
         </div>
     </div>
 </section>
 
-<!-- FINAL CTA — Hormozi urgency -->
+<!-- github -->
+
+
+<!-- cta -->
+
 <div class="final-cta">
     <div class="final-cta-title lang-es">¿Listo para empezar?</div>
     <div class="final-cta-title lang-en">Ready to start?</div>
-    <p class="final-cta-sub lang-es">
-        Escríbeme hoy y recibe una propuesta personalizada en menos de 24 horas.<br>
-        Sin compromiso. Sin letra pequeña.
-    </p>
-    <p class="final-cta-sub lang-en">
-        Message me today and get a custom proposal in less than 24 hours.<br>
-        No commitment. No fine print.
-    </p>
-    <div class="lang-es">
-        <a href="https://wa.me/573238181844?text=Hola,%20quiero%20una%20propuesta%20para%20mi%20proyecto.">Escribir por WhatsApp</a>
-    </div>
-    <div class="lang-en">
-        <a href="https://wa.me/573238181844?text=Hi,%20I%20want%20a%20proposal%20for%20my%20project.">Message on WhatsApp</a>
-    </div>
+    <p class="final-cta-sub lang-es">Escríbeme hoy y recibe una propuesta personalizada en menos de 24 horas.<br>Sin compromiso. Sin letra pequeña.</p>
+    <p class="final-cta-sub lang-en">Message me today and get a custom proposal in less than 24 hours.<br>No commitment. No fine print.</p>
+    <div class="lang-es"><a href="https://wa.me/573238181844?text=Hola,%20quiero%20una%20propuesta%20para%20mi%20proyecto.">Escribir por WhatsApp</a></div>
+    <div class="lang-en"><a href="https://wa.me/573238181844?text=Hi,%20I%20want%20a%20proposal%20for%20my%20project.">Message on WhatsApp</a></div>
 </div>
 
-<footer>
-    <p>Romagna // Ecosistema ARMONI</p>
-</footer>
+<footer><p> Romagna </p></footer>
 
 <script>
-// CURSOR
 const cursor = document.getElementById('custom-cursor');
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
+document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
 document.querySelectorAll('a, button, .tech-box, .project-card, .contact-box, .metodo-box').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('hover-grow'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hover-grow'));
 });
-
-// SCROLL REVEAL
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-}, { threshold: 0.1 });
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// NAV SMOOTH SCROLL
 document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelector('.nav-links').classList.remove('open');
-        document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-    });
+    link.addEventListener('click', (e) => { e.preventDefault(); document.querySelector('.nav-links').classList.remove('open'); document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' }); });
 });
-
-// LANGUAGE TOGGLE
-function setLang(lang) {
-    document.body.classList.toggle('en', lang === 'en');
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
-    });
-}
-
-// ACCORDION TOGGLE
-function toggleMetodo(box) {
-    const wasOpen = box.classList.contains('open');
-    document.querySelectorAll('.metodo-box').forEach(b => b.classList.remove('open'));
-    if (!wasOpen) box.classList.add('open');
-}
+function setLang(lang) { document.body.classList.toggle('en', lang === 'en'); document.querySelectorAll('.lang-btn').forEach(btn => { btn.classList.toggle('active', btn.textContent === lang.toUpperCase()); }); }
+function toggleMetodo(box) { const wasOpen = box.classList.contains('open'); document.querySelectorAll('.metodo-box').forEach(b => b.classList.remove('open')); if (!wasOpen) box.classList.add('open'); }
 </script>
-
 </body>
 </html>
